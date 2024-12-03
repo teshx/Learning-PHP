@@ -85,3 +85,63 @@ function average($x, $y)
 }
 average(10, 20);
 echo '<br>';
+// If Statement
+$pass = 50;
+$score = 49;
+if ($score >= $pass) {
+  echo ("You passed");
+}
+if ($score < $pass) {
+  echo ("Failed");
+}
+echo '<br>';
+// If Else 
+$x = 90;
+$y = 80;
+$z = 70;
+$score = 96;
+
+if ($score >= $x) {
+  echo ("You got A");
+} else if ($score >= $y) {
+  echo ("You got B");
+} else if ($score >= $z) {
+  echo ("You got C");
+} else {
+  echo ("You Failed!");
+}
+echo '<br>';
+// for loop 
+$someNumbers = [70, 89, 47, 88, 99];
+print "<pre>";
+print_r($someNumbers);
+echo '<br>';
+$lengthOfArray = count($someNumbers);
+for ($i = 0; $i < $lengthOfArray; $i++) {
+  echo ($someNumbers[$i] . "<br>");
+}
+echo '<br>';
+// While Loop example
+if (true) {
+  echo ("Abebe <br>");
+}
+$f = 0;
+while ($f < 3) {
+  echo ("Abebe <br>");
+  $f++;
+}
+echo '<br>';
+
+
+//with one echo you can render multiple html element
+
+
+echo '<div>
+        <h1>Welcome to My Website</h1>
+        <p>This is a paragraph.</p>
+        <ul>
+            <li>First item</li>
+            <li>Second item</li>
+            <li>Third item</li>
+        </ul>
+      </div>';

@@ -57,3 +57,31 @@ print_r($exampleArray);
 $exampleArray = array(3, "Abebe", 5, 8, 99, true, "Kebede");
 echo count($exampleArray);
 
+// Functions 
+function selamta()
+{
+  echo "Hello Evangadi Family";
+}
+selamta();
+
+// Functions with arguments
+function add($a, $b)
+{
+  $sum = $a + $b;
+  echo $sum;
+}
+add(44, 88);
+
+// Functions that return a value
+function adderWithReturn($a, $b)
+{
+  $sum = $a + $b;
+  return $sum;
+}
+function average($x, $y)
+{
+  $average = adderWithReturn($x, $y) / 2;
+  echo "The average of " . $x . " and " . $y . " is: " . $average;
+}
+average(10, 20);
+echo '<br>';

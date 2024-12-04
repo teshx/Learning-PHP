@@ -60,29 +60,46 @@
 
 
 // Insert data to the database 
-require "connect.php"; 
+require "connect.php";
 $firstName = "";
-$lastName = ""; 
+$lastName = "";
 $message = "";
 // Capture the submitted values 
-if(isset($_POST['fname'])){
-  $firstName = $_POST['fname']; 
+if (isset($_POST['fname'])) {
+  $firstName = $_POST['fname'];
 }
-if(isset($_POST['lname'])){
-  $lastName = $_POST['lname']; 
+if (isset($_POST['lname'])) {
+  $lastName = $_POST['lname'];
 }
-if(isset($_POST['contactMessage'])){
-  $message = $_POST['contactMessage']; 
-}  
-// Attempt insert query execution
-$sql = "INSERT INTO contactmessage (first_name, last_name, message_sent) VALUES ('$firstName', '$lastName', '$message')";
+if (isset($_POST['contactMessage'])) {
+  $message = $_POST['contactMessage'];
+}
 
-if(mysqli_query($link, $sql)){
-  echo "Records added successfully.";
-  mysqli_close($link);
-} else{
-  echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+// Prepare an insert query using placeholders
+$sql = "INSERT INTO contactmessage (first_name, last_name, message_sent) VALUES (?, ?, ?)";
+
+// Prepare the statement
+if ($stmt = mysqli_prepare($link, $sql)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt, "sss", $firstName, $lastName, $message);
+
+    // Attempt to execute the prepared statement
+    if (mysqli_stmt_execute($stmt)) {
+        echo "Records added successfully.";
+    } else {
+        echo "ERROR: Could not execute the query. " . mysqli_error($link);
+    }
+
+    // Close the statement
+    mysqli_stmt_close($stmt);
+} else {
+    echo "ERROR: Could not prepare the query. " . mysqli_error($link);
 }
+
+// Close the connection
+mysqli_close($link);
+?>
+
 
 ?>
 
@@ -99,10 +116,25 @@ if(mysqli_query($link, $sql)){
 
 <body>
   <header>
-    <h1>Thank you for your message!</h1>
+    <h1>Contact us</h1>
 
-  </header>
-  <section>We will get back to you soon.</section>
+    <!-- /contact.php?a=abebe&b=challa -->
+    <form action="contact.php" method="post">
+      <label for="fname">First name:</label>
+      <input type="text" id="fname" name="fname" /><br /><br />
+      <label for="lname">Last name:</label>
+      <input type="text" id="lname" name="lname" /><br /><br />
+      <label for="message">Message:</label><br />
+      <textarea
+        id="contactMessage"
+        name="contactMessage"
+        rows="4"
+        cols="50"
+        placeholder="Please write your message here"></textarea><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <a href="message.php">goto message</a>
 </body>
 
 </html>

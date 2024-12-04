@@ -6,7 +6,7 @@ $link = mysqli_connect("localhost", "phpAdmin", "phpadmin", "phpAdmin");
 if ($link === false) {
   die("ERROR: Could not connect. " . mysqli_connect_error());
 } else {
-  echo "Connected <br>";
+  // echo "Connected <br>";
 }
 
 

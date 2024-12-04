@@ -78,6 +78,7 @@ function adderWithReturn($a, $b)
   $sum = $a + $b;
   return $sum;
 }
+
 function average($x, $y)
 {
   $average = adderWithReturn($x, $y) / 2;
@@ -134,7 +135,7 @@ echo '<br>';
 
 
 //with one echo you can render multiple html element
-
+$average="is teshager habtie";
 
 echo '<div>
         <h1>Welcome to My Website</h1>
@@ -143,5 +144,6 @@ echo '<div>
             <li>First item</li>
             <li>Second item</li>
             <li>Third item</li>
+            <li>Third item '.$average.'</li>
         </ul>
       </div>';

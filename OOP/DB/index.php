@@ -21,7 +21,15 @@ include 'includes/autolod.php'
     $testbobject = new test();
     $testbobject->getUsers();
     $testbobject->getUsersStmt("john", 'Doe');
+
+
+
+    $users = new Usersview();
+    $users->showUser("john");
+    $usersCont = new Userscontroler();
+    $usersCont->creatUser("teshx", "habtie", "1994-11-12");
     ?>
+
 </body>
 
 </html>

@@ -16,5 +16,5 @@ if (isset($_POST["submit"])) {
     //Runing error handelers and user signup
     $logins->loginuser();
     //going to back to frontpaage
-    header("location:../index.php?error=none");
+    header("location:../profile.php");
 }

@@ -21,6 +21,26 @@ class signup extends dbh
         return $resultcheck;
     }
 
+    protected function getUserId($uid)
+    {
+
+        $stem = $this->connect()->prepare('SELECT user_id FROM users WHERE users_uid = ?');
+
+        if (!$stem->execute(array($uid))) {
+            $stem = null;
+            header("location:profile.php?error=stmterror");
+            exit();
+        }
+        if ($stem->rowCount() == 0) {
+            $stem = null;
+            header("location:profile.php?error=profileisnotfound");
+            exit();
+        }
+
+        $profileData = $stem->fetchAll(PDO::FETCH_ASSOC);
+        return $profileData;
+    }
+
     protected function setUser($uid, $pwd, $email)
     {
         $stmt = $this->connect()->prepare('INSERT INTO users (users_uid,users_pwd,users_email) VALUE (?,?,?)');

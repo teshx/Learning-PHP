@@ -21,7 +21,7 @@ class calaculate
 
         switch ($this->operator) {
             case 'add':
-                $result = $this->firstnum + $this->secondnum;
+                $result = $this->firstnum +$this->secondnum;
                 return $result;
                 break;
             case 'mul':
@@ -46,3 +46,4 @@ class calaculate
         }
     }
 }
+

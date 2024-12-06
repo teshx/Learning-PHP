@@ -22,10 +22,9 @@
             align-items: center;
         }
 
-        header .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
+if (isset($_SESSION["useruid"])) {
+    header("location:./profile.php");
+}
 
         header nav {
             display: flex;

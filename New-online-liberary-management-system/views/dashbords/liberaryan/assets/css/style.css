@@ -1,0 +1,127 @@
+﻿/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: black;
+
+  padding: 10px;
+}
+
+.navbar .logo img {
+  width: 120px;
+  z-index: 1;
+}
+
+.navbar-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.menu-items {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-items li {
+  padding: 10px;
+  position: relative;
+}
+
+.menu-items a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+}
+
+.menu-items a:hover {
+  background-color: #555;
+}
+
+/* Mobile Menu Toggle Button (☰) */
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Dropdown Menu Styles */
+.dropdown-list {
+  display: none;
+  position: absolute;
+  background-color: #444;
+  list-style: none;
+  padding: 10px;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  z-index: 10;
+}
+
+.dropdown-list li a {
+  color: white;
+  padding: 10px;
+  display: block;
+}
+
+.dropdown:hover .dropdown-list {
+  display: block;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+    width: 100%;
+  }
+
+  .navbar-menu.open {
+    display: block;
+  }
+
+  .menu-items {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .menu-items li {
+    width: 100%;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .dropdown-list {
+    position: relative; /* Display the dropdown above the link */
+    top: -100%;
+    left: 0;
+    width: 100%;
+  }
+
+  /* Ensuring that dropdowns are hidden on mobile until clicked */
+  .dropdown.open .dropdown-list {
+    display: block;
+  }
+}
+
+
+
+
+

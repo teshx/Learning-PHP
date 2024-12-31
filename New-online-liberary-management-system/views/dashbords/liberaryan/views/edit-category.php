@@ -108,7 +108,7 @@ require_once '../controllers/editCategoryController.php';
 </head>
 
 <body>
-    <?php include('../includes/header.php'); ?>
+    <header> <?php include('../includes/header.php'); ?></header>
     <div class="content-wrapper">
         <h4 class="header-line">Edit Category</h4>
         <div class="panel">

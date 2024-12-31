@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <?php include('../includes/header.php'); ?>
+    <header> <?php include('../includes/header.php'); ?></header>
     <div class="container">
         <h2>Add Category</h2>
         <?php if (isset($_SESSION['msg'])): ?>

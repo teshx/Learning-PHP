@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .container {
-            max-width: 900px;
+            min-width: 900px;
             margin: 5px auto;
             background: #fff;
             padding: 20px;
@@ -138,7 +138,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <?php include('../includes/header.php'); ?>
+    <header>
+        <?php include('../includes/header.php'); ?>
+    </header>
 
     <div class="container">
         <h2>Add Book and Location</h2>

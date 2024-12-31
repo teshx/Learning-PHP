@@ -3,7 +3,7 @@ function checkRole($requiredRole)
 {
     session_start();
     if (!isset($_SESSION['role']) || $_SESSION['role'] !== $requiredRole) {
-        header("Location: ../../login.php?message=Access Denied");
+        header("Location: ../../../login");
         exit;
     }
 }

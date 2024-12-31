@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'price' => $_POST['price'],
         'locationID' => $_POST['locationID'],
         'shelf' => $_POST['shelf'],
-         'numCopy' => $_POST['numCopy'],
+        'numCopy' => $_POST['numCopy'],
         'libraryname' => $_POST['libraryname'],
         'copynumber' => $_POST['copynumber']
     ];
@@ -192,6 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+    <header> <?php include('../includes/header.php'); ?></header>
     <div class="container">
         <h2>Edit Book and Location</h2>
         <form method="POST" enctype="multipart/form-data">

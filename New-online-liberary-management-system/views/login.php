@@ -8,7 +8,7 @@ if (isset($_SESSION['role'])) {
         header("Location: ./dashbords/admin/admin.php");
         exit;
     } elseif ($_SESSION['role'] === 'Librarian') {
-        header("Location: ./dashbords/liberaryan/liberaryan.php");
+        header("Location: ../liberaryan");
         exit;
     } elseif ($_SESSION['role'] === 'Member') {
         header("Location: ./dashbords/student/student.php");
@@ -38,7 +38,11 @@ if (isset($_SESSION['role'])) {
 
     <body>
         <div class="login-container">
+
             <img src="./assets/logo.png" alt="Login">
+            <h2>
+                <?php echo $_SESSION['error'] ?>
+            </h2>
             <h2>Login to Your Account</h2>
             <form method="POST" action="../routes/routes.php?action=login">
                 <input type="text" name="username" placeholder="Username" required>

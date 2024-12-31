@@ -30,14 +30,92 @@ if (isset($_POST['issue'])) {
 <head>
     <meta charset="UTF-8">
     <title>Issue Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+
+
+        h4 {
+            text-align: center;
+            color: #007bff;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        span {
+            display: block;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            text-align: center;
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+
 </head>
 
 <body>
+    <header>
+        <?php include('../includes/header.php'); ?>
+    </header>
 
 
-    <h4>Issue a New Book</h4>
     <p><?php $_SESSION['msg'] ?></p>
     <form method="post">
+
+        <h4>Issue a New Book</h4>
         <div>
             <label>Student ID</label>
             <input type="text" id="studentid" name="studentid" required oninput="getStudentDetails()">

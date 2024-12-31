@@ -36,7 +36,7 @@ $books = $controller->getAllBooks();
 </head>
 
 <body>
-    <?php include('../includes/header.php'); ?>
+    <header> <?php include('../includes/header.php'); ?></header>
     <div class="container">
 
         <h4>Manage Books</h4>

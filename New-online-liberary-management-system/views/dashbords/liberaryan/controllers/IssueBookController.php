@@ -71,28 +71,77 @@ class IssueBookController
             $issue_date = date('Y-m-d');
             $return_date = $this->calculateReturnDate($student['role'], $issue_date);
 
-            // Prepare SQL query for inserting the issued book into the database
-            $sql = "INSERT INTO issued_books (book_id, user_id, issue_date, return_date, status, fine, isbn, username) 
-                VALUES (:boid, :uid, :issue_date, :return_date, :status, :fine,:isbn,:username)";
 
-            // Prepare and bind parameters
+
+
+
+
+
+
+
+            $sql = "SELECT * FROM issued_books WHERE user_id = :user_id";
             $stmt = $dbh->prepare($sql);
-            $stmt->bindParam(':boid', $boid, PDO::PARAM_INT);  // Bind book ID
-            $stmt->bindParam(':uid', $uid, PDO::PARAM_INT);  // Bind student ID
-            $stmt->bindParam(':issue_date', $issue_date, PDO::PARAM_STR);
-            $stmt->bindParam(':return_date', $return_date, PDO::PARAM_STR);
-            $stmt->bindParam(':status', $status, PDO::PARAM_STR);
-            $stmt->bindParam(':fine', $fine = 0, PDO::PARAM_INT); // Assuming fine is 0 initially
-            $stmt->bindParam(':isbn', $isbn, PDO::PARAM_STR); // Assuming fine is 0 initially
-            $stmt->bindParam(':username', $username, PDO::PARAM_STR); // Assuming fine is 0 initially
+            $stmt->bindParam(':user_id', $uid, PDO::PARAM_INT);
+            $stmt->execute();
 
-            // Execute the query and check for success
-            if ($stmt->execute()) {
-                $_SESSION['e'] = "Success: Book with ID $bookid issued to student with ID $studentid.";
-                return "Book issued successfully";
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result) {
+                return "First return borrowing book bro !!"; // Return the first borrowed book record
             } else {
-                $_SESSION['e'] = "Error: Failed to issue the book with ID $bookid.";
-                throw new Exception("Error in issuing book");
+
+
+
+
+
+                $employ = $_SESSION['username'];
+
+
+
+
+
+
+
+
+
+                // Prepare SQL query for inserting the issued book into the database
+                $sql = "INSERT INTO issued_books (book_id, user_id, issue_date, return_date, status, fine, isbn, username,employ_id) 
+                VALUES (:boid, :uid, :issue_date, :return_date, :status, :fine,:isbn,:username,:employ_id)";
+
+                // Prepare and bind parameters
+                $stmt = $dbh->prepare($sql);
+                $stmt->bindParam(':boid', $boid, PDO::PARAM_INT);  // Bind book ID
+                $stmt->bindParam(':uid', $uid, PDO::PARAM_INT);  // Bind student ID
+                $stmt->bindParam(':issue_date', $issue_date, PDO::PARAM_STR);
+                $stmt->bindParam(':return_date', $return_date, PDO::PARAM_STR);
+                $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+                $stmt->bindParam(':fine', $fine = 0, PDO::PARAM_INT); // Assuming fine is 0 initially
+                $stmt->bindParam(':isbn', $isbn, PDO::PARAM_STR); // Assuming fine is 0 initially
+                $stmt->bindParam(':username', $username, PDO::PARAM_STR); // Assuming fine is 0 initially
+                $stmt->bindParam(':employ_id', $employ, PDO::PARAM_STR); // emplye id
+
+                // Execute the query and check for success
+                if ($stmt->execute()) {
+                    $_SESSION['e'] = "Success: Book with ID $bookid issued to student with ID $studentid.";
+
+
+
+
+
+
+
+                    $sql = "UPDATE book SET numBorrowed = numBorrowed + 1 WHERE id = :id";
+                    $stmt = $dbh->prepare($sql);
+                    $stmt->bindParam(':id', $boid, PDO::PARAM_INT);
+
+                    if ($stmt->execute()) {
+                        return "Book updated successfullyy!";
+                    } else {
+                        return "Failed to update the book.";
+                    }
+                } else {
+                    $_SESSION['e'] = "Error: Failed to issue the book with ID $bookid.";
+                    throw new Exception("Error in issuing book");
+                }
             }
         } catch (Exception $e) {
             // Catch and return the exception message

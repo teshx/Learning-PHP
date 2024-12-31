@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../../../../config/db.php';
 
 class Book
@@ -29,14 +30,15 @@ class Book
 
             $newImageName = md5(time() . $imageName) . '.' . $extension;
             $imagePath = '../assets/bookImages/' . $newImageName;
+            $employ = $_SESSION['username'];
 
             if (!move_uploaded_file($imageTemp, $imagePath)) {
                 return ['success' => false, 'error' => 'Failed to upload the image.'];
             }
 
             // Insert into `book` table
-            $stmt = $this->conn->prepare("INSERT INTO book (name, catID, authID, ISBNnumber, price, image, numCopy, locationID) 
-                                         VALUES (:name, :catID, :authID, :ISBNnumber, :price, :image, :numCopy, 0)");
+            $stmt = $this->conn->prepare("INSERT INTO book (name, catID, authID, ISBNnumber, price, image, numCopy, locationID,employ_id) 
+                                         VALUES (:name, :catID, :authID, :ISBNnumber, :price, :image, :numCopy, 0,:employ_id)");
             $stmt->execute([
                 ':name' => $data['name'],
                 ':catID' => $data['catID'],
@@ -44,7 +46,8 @@ class Book
                 ':ISBNnumber' => $data['ISBNnumber'],
                 ':price' => $data['price'],
                 ':image' => $newImageName,
-                ':numCopy' => $data['numCopy']
+                ':numCopy' => $data['numCopy'],
+                ':employ_id' => $employ
             ]);
 
             $bookId = $this->conn->lastInsertId();
@@ -53,7 +56,7 @@ class Book
             $stmt = $this->conn->prepare("INSERT INTO location (shelf, libraryname, copynumber) 
                                          VALUES ( :shelf, :libraryname, :copynumber)");
             $stmt->execute([
-                
+
                 ':shelf' => $data['shelf'],
                 ':libraryname' => $data['libraryname'],
                 ':copynumber' => $data['copynumber']

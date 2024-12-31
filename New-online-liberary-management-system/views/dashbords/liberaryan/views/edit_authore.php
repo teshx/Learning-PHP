@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
 </head>
 
 <body>
-    <?php include('../includes/header.php'); ?>
+    <header> <?php include('../includes/header.php'); ?></header>
 
     <div class="container">
         <h4>Edit Author</h4>

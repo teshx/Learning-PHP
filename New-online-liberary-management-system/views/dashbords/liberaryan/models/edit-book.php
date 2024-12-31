@@ -45,7 +45,7 @@ WHERE id = :locationID";
             $locationQuery->bindParam(':shelf', $data['shelf'], PDO::PARAM_STR);
             // $locationQuery->bindParam(':booknumber', $data['booknumber'], PDO::PARAM_STR);
             $locationQuery->bindParam(':libraryname', $data['libraryname'], PDO::PARAM_STR);
-            $locationQuery->bindParam(':copynumber', $data['copynumber'], PDO::PARAM_INT);
+            $locationQuery->bindParam(':copynumber', $data['copynumber'], PDO::PARAM_STR);
             $locationQuery->bindParam(':locationID', $data['locationID'], PDO::PARAM_INT);
             $locationQuery->execute();
 
@@ -56,7 +56,8 @@ catID = :catID,
 authID = :authID,
 ISBNnumber = :ISBNnumber,
 price = :price,
-image = :image
+image = :image,
+numCopy = :numCopy
 WHERE id = :id";
             $bookQuery = $this->conn->prepare($bookSql);
             $bookQuery->bindParam(':name', $data['name'], PDO::PARAM_STR);
@@ -65,6 +66,7 @@ WHERE id = :id";
             $bookQuery->bindParam(':ISBNnumber', $data['ISBNnumber'], PDO::PARAM_STR);
             $bookQuery->bindParam(':price', $data['price'], PDO::PARAM_STR);
             $bookQuery->bindParam(':image', $data['image'], PDO::PARAM_STR);
+            $bookQuery->bindParam(':numCopy', $data['numCopy'], PDO::PARAM_INT);
             $bookQuery->bindParam(':id', $data['id'], PDO::PARAM_INT);
             $bookQuery->execute();
 

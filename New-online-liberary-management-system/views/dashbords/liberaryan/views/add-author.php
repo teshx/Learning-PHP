@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_author'])) {
 </head>
 
 <body>
-    <?php include('../includes/header.php'); ?>
+    <header> <?php include('../includes/header.php'); ?></header>
     <div class="container">
         <h4>Add Author</h4>
 

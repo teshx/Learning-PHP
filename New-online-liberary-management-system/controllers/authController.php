@@ -1,4 +1,8 @@
 <?php
+
+
+session_start();  // This must be at the very top of your file
+
 require_once __DIR__ . '/../models/User.php';
 
 class AuthController
@@ -14,13 +18,16 @@ class AuthController
     {
         $user = $this->user->findUserByUsernameAndPassword($username, $password);
         if ($user) {
-            session_start();
-            $_SESSION['user_id'] = $user['id'];
+           
+            $_SESSION['user_id'] = $user['id'];  // Store user ID
+             // Store username
             $_SESSION['role'] = $user['role'];
+            $_SESSION['username'] = $user['username'];
             header("Location: ../views/dashboard.php");
             exit;
         } else {
-            header("Location: ../views/error.php?message=Invalid credentials");
+            $_SESSION['error']="invalid creadential";
+            header("Location: ../views/login.php");
         }
     }
 }

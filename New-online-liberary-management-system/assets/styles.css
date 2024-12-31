@@ -54,8 +54,8 @@ header {
 
 /* Home Section */
 .home {
-  background: url("./1bg.png") no-repeat center center/cover;
-  height: 45vh;
+  /* background: url("./bg.png") no-repeat center center/cover; */
+  height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -117,6 +117,7 @@ $issuedBooks = $result->fetchAll(PDO::FETCH_OBJ);
 </head>
 
 <body>
+    <header> <?php include('../includes/header.php'); ?></header>
     <div class="container">
         <h4>Manage Issued Books</h4>
 
@@ -145,6 +146,7 @@ $issuedBooks = $result->fetchAll(PDO::FETCH_OBJ);
                     <th>Return Date</th>
                     <th>Status</th>
                     <th>Fine</th>
+                    <th>employ_id</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -159,6 +161,7 @@ $issuedBooks = $result->fetchAll(PDO::FETCH_OBJ);
                             <td><?php echo $book->return_date; ?></td>
                             <td><?php echo $book->status; ?></td>
                             <td><?php echo $book->fine; ?></td>
+                            <td><?php echo $book->employ_id; ?></td>
                             <td>
                                 <a href="edit-issued-book.php?id=<?php echo $book->id; ?>" class="btn btn-primary">Edit</a>
                                 <a href="manage-issued-books.php?del=<?php echo $book->id; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>

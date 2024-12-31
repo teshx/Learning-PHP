@@ -24,7 +24,7 @@ class IssuedBook
     // Get all issued books
     public function getAllIssuedBooks()
     {
-        $query = "SELECT id, book_id, user_id, issue_date, return_date, status, fine, isbn, username FROM {$this->table}";
+        $query = "SELECT id, book_id, user_id, issue_date, return_date, status, fine, isbn, username,employ_id FROM {$this->table}";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;

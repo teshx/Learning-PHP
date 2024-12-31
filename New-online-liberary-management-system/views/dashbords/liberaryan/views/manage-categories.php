@@ -37,7 +37,7 @@ $categories = $controller->getAllCategories();
 </head>
 
 <body>
-    <?php include('../includes/header.php'); ?>
+    <header> <?php include('../includes/header.php'); ?></header>
     <div class="container">
 
         <h4>Manage Categories</h4>
